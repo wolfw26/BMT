@@ -1,5 +1,10 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "bmt");
+$db = mysqli_connect("localhost", "root", "root_password", "bmt");
+// Check connection
+if ($db -> connect_errno) {
+	echo "Failed to connect to MySQL: " . $db -> connect_error;
+	exit();
+  }
 
 //---fungsi2---//
 function cek_session($isi_admin, $isi_penguji) {
