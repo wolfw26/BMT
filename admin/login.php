@@ -71,6 +71,7 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
             var pass = $("input[name=pass]");
 
             function proses_login() {
+                console.log('clck')
                 if (user.val() == "") {
                     $("#output").removeClass('alert alert-success');
                     $("#output").addClass("alert alert-danger animated fadeInUp").html("Username tidak boleh kosong");
@@ -100,6 +101,8 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                             } else if (msg == 'gagal') {
                                 $("#output").removeClass('alert alert-success');
                                 $("#output").addClass("alert alert-danger animated fadeInUp").html("Login gagal, coba lagi");
+                            }else{
+                                console.log(msg)
                             }
                         }
                     });
