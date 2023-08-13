@@ -36,7 +36,8 @@ if (@$_SESSION['admin']) { ?>
                                         <tr>
                                             <th>#</th>
                                             <th>Nama Karyawan</th>
-                                            <th>Total Nilai</th>
+                                            <th>Total Nilai/Grade</th>
+                                            <th>Status</th>
                                             <th>Tanggal Pelatihan</th>
                                             <th>Tanggal Selesai</th>
                                             <th>Opsi</th>
@@ -45,16 +46,20 @@ if (@$_SESSION['admin']) { ?>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $sql_pelatihan = mysqli_query($db, "SELECT * FROM pelatihan") or die($db->error);
+                                        $sql_pelatihan = $db->query("SELECT p.*, ps.nama_lengkap, n.* 
+                                        FROM pelatihan p
+                                        JOIN peserta ps ON p.id_peserta = ps.id_peserta
+                                        JOIN penilaian n ON p.id_nilai = n.id_nilai");
                                         if (mysqli_num_rows($sql_pelatihan) > 0) {
-                                            while ($data_pelatihan = mysqli_fetch_array($sql_pelatihan)) {
+                                            while ($data_pelatihan = $sql_pelatihan->fetch_assoc()) {
                                         ?>
                                                 <tr>
-                                                    <td><?php echo $no++; ?></td>
-                                                    <td><?php echo $data_pelatihan['id_peserta']; ?></td>
-                                                    <td><?php echo $data_pelatihan['id_nilai']; ?></td>
-                                                    <td><?php echo $data_pelatihan['tgl_mulai']; ?></td>
-                                                    <td><?php echo $data_pelatihan['tgl_selesai']; ?></td>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= $data_pelatihan['nama_lengkap']; ?></td>
+                                                    <td><?= $data_pelatihan['n_total']; ?> / <?= $data_pelatihan['grade']; ?></td>
+                                                    <td><?= $data_pelatihan['status_nilai']; ?></td>
+                                                    <td><?= date("d F Y", strtotime($data_pelatihan['tgl_mulai'])); ?></td>
+                                                    <td><?= date("d F Y", strtotime($data_pelatihan['tgl_selesai'])); ?></td>
                                                     <td align="center" width="170px">
                                                         <a href="?page=pelatihan&action=edit&id=<?php echo $data_pelatihan['id']; ?>" class="badge badge-success text-white">Edit</a>
                                                         <a onclick="return confirm('Yakin akan menghapus data pelatihan?');" href="?page=pelatihan&action=hapus&id=<?php echo $data_pelatihan['id']; ?>" class="badge text-white badge-danger">Hapus</a>
