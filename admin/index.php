@@ -91,6 +91,8 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                             </div>
                         </div>
 
+                        <!-- DASBOARD -->
+
                         <div class="header-body">
 
                             <ul class="navbar-nav">
@@ -195,7 +197,7 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                         <!-- <span>Dashboard</span> -->
                                     </a>
                                 </li>
-
+                                <!-- SIDEBAR MENU -->
                                 <li>
                                     <a class="active" href="?page=dashboard" class="<?php if (@$_GET['page'] == 'dashboard') {
                                                                                         echo 'active-menu';
@@ -323,9 +325,13 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                                 <li><a href="#" data-toggle="modal" data-target="#nilai_alamat">Jabatan</a></li>
                                             </ul>
                                         </li>
+                                        <li>
+                                            <a href="laporan/ujian2.php" target="_blank">Tes Tertulis</a>
+                                        </li>
 
                                     </ul>
                                 </li>
+                                <!-- END SIDEBAR MENU -->
                             </ul>
                         </div>
                     </div>

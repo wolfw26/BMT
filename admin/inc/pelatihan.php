@@ -1,86 +1,85 @@
+<?php
+if (@$_SESSION['admin']) { ?>
 
-                           <?php
-if(@$_SESSION['admin']) { ?>
-
-<div class="page-header">
-    <div>
-        <h3>Jadwal Pelatihan Karyawan</h3>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Home</a>
-                </li> 
-                <li class="breadcrumb-item active" aria-current="page">Data Pelatihan</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-
-<div class="row">
-	<?php
-    $id = @$_GET['id'];
-    $sql_per_id = mysqli_query($db, "SELECT * FROM peserta WHERE id_peserta= '$id'") or die ($db->error);
-    $data = mysqli_fetch_array($sql_per_id);
-
-    if(@$_GET['action'] == '') { ?>
-
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-12"> 
-                <div class="card">
-                	<div class="card-header">
-                		<h5>Data Pelatihan | <a href="?page=pelatihan&action=tambah" class="badge badge-primary">Tambah</a></h5>
-                	</div>
-                    <div class="card-body">
-                        <table id="example1" class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                    <th>#</th>
-                                    <th>Nama Karyawan</th>
-                                    <th>Total Nilai</th>
-                                    <th>Tanggal Pelatihan</th>
-                                    <th>Tanggal Selesai</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no = 1;
-                                $sql_pelatihan = mysqli_query($db, "SELECT * FROM pelatihan") or die ($db->error);
-                                if(mysqli_num_rows($sql_pelatihan) > 0) {
-                                    while($data_pelatihan = mysqli_fetch_array($sql_pelatihan)) {
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><?php echo $data_pelatihan['id_peserta']; ?></td>
-                                            <td><?php echo $data_pelatihan['id_nilai']; ?></td>
-                                            <td><?php echo $data_pelatihan['tgl_mulai']; ?></td>
-                                            <td><?php echo $data_pelatihan['tgl_selesai']; ?></td>
-                                            <td align="center" width="170px">
-                                                <a href="?page=pelatihan&action=edit&id=<?php echo $data_pelatihan['id']; ?>" class="badge badge-success text-white">Edit</a>
-                                                <a onclick="return confirm('Yakin akan menghapus data pelatihan?');" href="?page=pelatihan&action=hapus&id=<?php echo $data_pelatihan['id']; ?>" class="badge text-white badge-danger">Hapus</a>
-                                                <a href="?page=pelatihan&action=detail&id=<?php echo $data_pelatihan['id']; ?>" class="badge badge-info text-white">Detail</a>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <tr>
-                                        <td colspan="6" align="center">Data tidak ditemukan</td>
-                                    </tr>
-                                    <?php
-                                }
-                                ?>
-                            </tbody> 
-                        </table> 
-                    </div>
-                </div> 
-            </div>
+    <div class="page-header">
+        <div>
+            <h3>Jadwal Pelatihan Karyawan</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Pelatihan</li>
+                </ol>
+            </nav>
         </div>
     </div>
 
-    <!--<?php } else if(@$_GET['action'] == 'detail') { ?>
+    <div class="row">
+        <?php
+        $id = @$_GET['id'];
+        $sql_per_id = mysqli_query($db, "SELECT * FROM peserta WHERE id_peserta= '$id'") or die($db->error);
+        $data = mysqli_fetch_array($sql_per_id);
+
+        if (@$_GET['action'] == '') { ?>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Data Pelatihan | <a href="?page=pelatihan&action=tambah" class="badge badge-primary">Tambah</a></h5>
+                            </div>
+                            <div class="card-body">
+                                <table id="example1" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nama Karyawan</th>
+                                            <th>Total Nilai</th>
+                                            <th>Tanggal Pelatihan</th>
+                                            <th>Tanggal Selesai</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        $sql_pelatihan = mysqli_query($db, "SELECT * FROM pelatihan") or die($db->error);
+                                        if (mysqli_num_rows($sql_pelatihan) > 0) {
+                                            while ($data_pelatihan = mysqli_fetch_array($sql_pelatihan)) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $no++; ?></td>
+                                                    <td><?php echo $data_pelatihan['id_peserta']; ?></td>
+                                                    <td><?php echo $data_pelatihan['id_nilai']; ?></td>
+                                                    <td><?php echo $data_pelatihan['tgl_mulai']; ?></td>
+                                                    <td><?php echo $data_pelatihan['tgl_selesai']; ?></td>
+                                                    <td align="center" width="170px">
+                                                        <a href="?page=pelatihan&action=edit&id=<?php echo $data_pelatihan['id']; ?>" class="badge badge-success text-white">Edit</a>
+                                                        <a onclick="return confirm('Yakin akan menghapus data pelatihan?');" href="?page=pelatihan&action=hapus&id=<?php echo $data_pelatihan['id']; ?>" class="badge text-white badge-danger">Hapus</a>
+                                                        <a href="?page=pelatihan&action=detail&id=<?php echo $data_pelatihan['id']; ?>" class="badge badge-info text-white">Detail</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        } else {
+                                            ?>
+                                            <tr>
+                                                <td colspan="6" align="center">Data tidak ditemukan</td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<?php } else if (@$_GET['action'] == 'detail') { ?>
 
     <div class="col-md-12">
         <div class="row">
@@ -107,12 +106,16 @@ if(@$_SESSION['admin']) { ?>
                         	<tr>
                         		<td align="right"><b>Tempat Tanggal Lahir</b></td>
                         		<td align="center">:</td>
-                        		<td><?php echo $data['tempat_lahir'].", ".tgl_indo($data['tgl_lahir']); ?></td>
+                        		<td><?php echo $data['tempat_lahir'] . ", " . tgl_indo($data['tgl_lahir']); ?></td>
                         	</tr>
                         	<tr>
                         		<td align="right"><b>Jenis Kelamin</b></td>
                         		<td align="center">:</td>
-                        		<td><?php if($data['jenis_kelamin'] == 'L') { echo "Laki-laki"; } else { echo "Perempuan"; } ?></td>
+                        		<td><?php if ($data['jenis_kelamin'] == 'L') {
+                                        echo "Laki-laki";
+                                    } else {
+                                        echo "Perempuan";
+                                    } ?></td>
                         	</tr>
                         	<tr>
                         		<td align="right"><b>Agama</b></td>
@@ -161,7 +164,7 @@ if(@$_SESSION['admin']) { ?>
 	    </div>
 	</div>
 	
-	<!--<?php } else if(@$_GET['action'] == 'tambah') { ?>
+	<!--<?php } else if (@$_GET['action'] == 'tambah') { ?>
 	
 	<div class="col-md-12">
 
@@ -291,44 +294,40 @@ if(@$_SESSION['admin']) { ?>
     </div>
 
     <?php
-	} else if(@$_GET['action'] == 'prosestambah') {
-    $nip           = @mysqli_real_escape_string($db, $_POST['nip']);
-    $nama_lengkap  = @mysqli_real_escape_string($db, $_POST['nama_lengkap']);
-    $tempat_lahir  = @mysqli_real_escape_string($db, $_POST['tempat_lahir']);
-    $tgl_lahir     = @mysqli_real_escape_string($db, $_POST['tgl_lahir']);
-    $jenis_kelamin = @mysqli_real_escape_string($db, $_POST['jenis_kelamin']);
-    $agama         = @mysqli_real_escape_string($db, $_POST['agama']);
-    $no_telp       = @mysqli_real_escape_string($db, $_POST['no_telp']);
-    $email         = @mysqli_real_escape_string($db, $_POST['email']);
-    $alamat        = @mysqli_real_escape_string($db, $_POST['alamat']);
-    $jabatan       = @mysqli_real_escape_string($db, $_POST['jabatan']);
-    $foto          = @$_FILES['foto']['name'];
-    $lokasi        = @$_FILES['foto']['tmp_name'];
-    move_uploaded_file($lokasi, "img/foto_penguji/".$foto);       
-    $username      = @mysqli_real_escape_string($db, $_POST['username']);
-    $password      = @mysqli_real_escape_string($db, $_POST['password']);
-    $status        = @mysqli_real_escape_string($db, $_POST['status']);
+            } else if (@$_GET['action'] == 'prosestambah') {
+                $nip           = @mysqli_real_escape_string($db, $_POST['nip']);
+                $nama_lengkap  = @mysqli_real_escape_string($db, $_POST['nama_lengkap']);
+                $tempat_lahir  = @mysqli_real_escape_string($db, $_POST['tempat_lahir']);
+                $tgl_lahir     = @mysqli_real_escape_string($db, $_POST['tgl_lahir']);
+                $jenis_kelamin = @mysqli_real_escape_string($db, $_POST['jenis_kelamin']);
+                $agama         = @mysqli_real_escape_string($db, $_POST['agama']);
+                $no_telp       = @mysqli_real_escape_string($db, $_POST['no_telp']);
+                $email         = @mysqli_real_escape_string($db, $_POST['email']);
+                $alamat        = @mysqli_real_escape_string($db, $_POST['alamat']);
+                $jabatan       = @mysqli_real_escape_string($db, $_POST['jabatan']);
+                $foto          = @$_FILES['foto']['name'];
+                $lokasi        = @$_FILES['foto']['tmp_name'];
+                move_uploaded_file($lokasi, "img/foto_penguji/" . $foto);
+                $username      = @mysqli_real_escape_string($db, $_POST['username']);
+                $password      = @mysqli_real_escape_string($db, $_POST['password']);
+                $status        = @mysqli_real_escape_string($db, $_POST['status']);
 
-    $sumber = @$_FILES['foto']['tmp_name'];
-    $target = 'img/foto_penguji/';
-    $nama_gambar = @$_FILES['foto']['name'];
+                $sumber = @$_FILES['foto']['tmp_name'];
+                $target = 'img/foto_penguji/';
+                $nama_gambar = @$_FILES['foto']['name'];
 
-    if($nama_foto != '') 
-    {
-        if(move_uploaded_file($sumber, $target.$nama_foto))
-        {
-            mysqli_query($db, "INSERT INTO penguji VALUES('', '$nip', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$jabatan', '$nama_gambar', '$username', md5('$password'), '$password', '$status')") or die ($db->error);
-            echo '<script>window.location="?page=penguji";</script>';
-        } else 
-        {
-            echo '<script>alert("Gagal menambah data penguji, foto gagal diupload, coba lagi!"); window.location="?page=penguji";</script>';
-        }
-    } else 
-    {
-        mysqli_query($db, "INSERT INTO penguji VALUES('', '$nip', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$jabatan', '$nama_gambar', '$username', md5('$password'), '$password', '$status')") or die ($db->error);
-        echo '<script>window.location="?page=penguji";</script>';
-    }
-	} else if(@$_GET['action'] == 'edit') { ?>
+                if ($nama_foto != '') {
+                    if (move_uploaded_file($sumber, $target . $nama_foto)) {
+                        mysqli_query($db, "INSERT INTO penguji VALUES('', '$nip', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$jabatan', '$nama_gambar', '$username', md5('$password'), '$password', '$status')") or die($db->error);
+                        echo '<script>window.location="?page=penguji";</script>';
+                    } else {
+                        echo '<script>alert("Gagal menambah data penguji, foto gagal diupload, coba lagi!"); window.location="?page=penguji";</script>';
+                    }
+                } else {
+                    mysqli_query($db, "INSERT INTO penguji VALUES('', '$nip', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$jabatan', '$nama_gambar', '$username', md5('$password'), '$password', '$status')") or die($db->error);
+                    echo '<script>window.location="?page=penguji";</script>';
+                }
+            } else if (@$_GET['action'] == 'edit') { ?>
 
 	<div class="col-md-12">
 
@@ -370,7 +369,9 @@ if(@$_SESSION['admin']) { ?>
                                 <div class="col-sm-10">
                                     <select name="jenis_kelamin" class="form-control" required>
                                         <option value="L">Laki-laki</option>
-                                        <option value="P" <?php if($data['jenis_kelamin'] == 'P') { echo "selected"; } ?>>Perempuan</option>
+                                        <option value="P" <?php if ($data['jenis_kelamin'] == 'P') {
+                                                                echo "selected";
+                                                            } ?>>Perempuan</option>
                                     </select>
                                 </div>
                             </div> 
@@ -379,10 +380,18 @@ if(@$_SESSION['admin']) { ?>
                                 <div class="col-sm-10">
                                     <select name="agama" class="form-control" required>
                                         <option value="Islam">Islam</option>
-                                        <option value="Kristen" <?php if($data['agama'] == 'Kristen') { echo "selected"; } ?>>Kristen</option>
-                                        <option value="Katholik" <?php if($data['agama'] == 'Katholik') { echo "selected"; } ?>>Katholik</option>
-                                        <option value="Hindu" <?php if($data['agama'] == 'Hindu') { echo "selected"; } ?>>Hindu</option>
-                                        <option value="Budha" <?php if($data['agama'] == 'Budha') { echo "selected"; } ?>>Budha</option>
+                                        <option value="Kristen" <?php if ($data['agama'] == 'Kristen') {
+                                                                    echo "selected";
+                                                                } ?>>Kristen</option>
+                                        <option value="Katholik" <?php if ($data['agama'] == 'Katholik') {
+                                                                        echo "selected";
+                                                                    } ?>>Katholik</option>
+                                        <option value="Hindu" <?php if ($data['agama'] == 'Hindu') {
+                                                                    echo "selected";
+                                                                } ?>>Hindu</option>
+                                        <option value="Budha" <?php if ($data['agama'] == 'Budha') {
+                                                                    echo "selected";
+                                                                } ?>>Budha</option>
                                     
                                     </select>
                                 </div>
@@ -435,7 +444,9 @@ if(@$_SESSION['admin']) { ?>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control" required>
                                         <option value="aktif">Aktif</option>
-                                        <option value="tidak aktif" <?php if($data['status'] == 'tidak aktif') { echo "selected"; } ?>>Tidak Aktif</option>
+                                        <option value="tidak aktif" <?php if ($data['status'] == 'tidak aktif') {
+                                                                        echo "selected";
+                                                                    } ?>>Tidak Aktif</option>
                                     </select>
                                 </div>
                             </div>   
@@ -456,44 +467,44 @@ if(@$_SESSION['admin']) { ?>
     </div>
 
         <?php
-    } else if(@$_GET['action'] == 'prosesedit') {
-        $nip           = @mysqli_real_escape_string($db, $_POST['nip']);
-        $nama_lengkap  = @mysqli_real_escape_string($db, $_POST['nama_lengkap']);
-        $tempat_lahir  = @mysqli_real_escape_string($db, $_POST['tempat_lahir']);
-        $tgl_lahir     = @mysqli_real_escape_string($db, $_POST['tgl_lahir']);
-        $jenis_kelamin = @mysqli_real_escape_string($db, $_POST['jenis_kelamin']);
-        $agama         = @mysqli_real_escape_string($db, $_POST['agama']);
-        $no_telp       = @mysqli_real_escape_string($db, $_POST['no_telp']);
-        $email         = @mysqli_real_escape_string($db, $_POST['email']);
-        $alamat        = @mysqli_real_escape_string($db, $_POST['alamat']);
-        $jabatan       = @mysqli_real_escape_string($db, $_POST['jabatan']); 
-        $foto          = @$_FILES['foto']['name'];
-        $lokasi        = @$_FILES['foto']['tmp_name'];
-        move_uploaded_file($lokasi, "img/foto_penguji/".$foto);  
-        $username      = @mysqli_real_escape_string($db, $_POST['username']);
-        $password      = @mysqli_real_escape_string($db, $_POST['password']);
-        $status        = @mysqli_real_escape_string($db, $_POST['status']);
+            } else if (@$_GET['action'] == 'prosesedit') {
+                $nip           = @mysqli_real_escape_string($db, $_POST['nip']);
+                $nama_lengkap  = @mysqli_real_escape_string($db, $_POST['nama_lengkap']);
+                $tempat_lahir  = @mysqli_real_escape_string($db, $_POST['tempat_lahir']);
+                $tgl_lahir     = @mysqli_real_escape_string($db, $_POST['tgl_lahir']);
+                $jenis_kelamin = @mysqli_real_escape_string($db, $_POST['jenis_kelamin']);
+                $agama         = @mysqli_real_escape_string($db, $_POST['agama']);
+                $no_telp       = @mysqli_real_escape_string($db, $_POST['no_telp']);
+                $email         = @mysqli_real_escape_string($db, $_POST['email']);
+                $alamat        = @mysqli_real_escape_string($db, $_POST['alamat']);
+                $jabatan       = @mysqli_real_escape_string($db, $_POST['jabatan']);
+                $foto          = @$_FILES['foto']['name'];
+                $lokasi        = @$_FILES['foto']['tmp_name'];
+                move_uploaded_file($lokasi, "img/foto_penguji/" . $foto);
+                $username      = @mysqli_real_escape_string($db, $_POST['username']);
+                $password      = @mysqli_real_escape_string($db, $_POST['password']);
+                $status        = @mysqli_real_escape_string($db, $_POST['status']);
 
-        $sumber = @$_FILES['foto']['tmp_name'];
-        $target = 'img/foto_penguji/';
-        $nama_gambar = @$_FILES['foto']['name'];
+                $sumber = @$_FILES['foto']['tmp_name'];
+                $target = 'img/foto_penguji/';
+                $nama_gambar = @$_FILES['foto']['name'];
 
-        if($nama_foto == '') {
-            mysqli_query($db, "UPDATE penguji SET nip = '$nip', nama_lengkap = '$nama_lengkap', tempat_lahir = '$tempat_lahir', tgl_lahir = '$tgl_lahir', jenis_kelamin = '$jenis_kelamin', agama = '$agama', no_telp = '$no_telp', email = '$email', alamat = '$alamat', jabatan = '$jabatan',foto = '$nama_gambar', username = '$username', password = md5('$password'), pass = '$password', status = '$status' WHERE id_penguji = '$id'") or die ($db->error);           
-            echo '<script>window.location="?page=penguji";</script>';
-        } else {
-            if(move_uploaded_file($sumber, $target.$nama_foto)) {
-                mysqli_query($db, "UPDATE penguji SET nip = '$nip', nama_lengkap = '$nama_lengkap', tempat_lahir = '$tempat_lahir', tgl_lahir = '$tgl_lahir', jenis_kelamin = '$jenis_kelamin', agama = '$agama', no_telp = '$no_telp', email = '$email', alamat = '$alamat', jabatan = '$jabatan', foto = '$nama_gambar', username = '$username', password = md5('$password'), pass = '$password', status = '$status' WHERE id_penguji = '$id'") or die ($db->error);            
+                if ($nama_foto == '') {
+                    mysqli_query($db, "UPDATE penguji SET nip = '$nip', nama_lengkap = '$nama_lengkap', tempat_lahir = '$tempat_lahir', tgl_lahir = '$tgl_lahir', jenis_kelamin = '$jenis_kelamin', agama = '$agama', no_telp = '$no_telp', email = '$email', alamat = '$alamat', jabatan = '$jabatan',foto = '$nama_gambar', username = '$username', password = md5('$password'), pass = '$password', status = '$status' WHERE id_penguji = '$id'") or die($db->error);
+                    echo '<script>window.location="?page=penguji";</script>';
+                } else {
+                    if (move_uploaded_file($sumber, $target . $nama_foto)) {
+                        mysqli_query($db, "UPDATE penguji SET nip = '$nip', nama_lengkap = '$nama_lengkap', tempat_lahir = '$tempat_lahir', tgl_lahir = '$tgl_lahir', jenis_kelamin = '$jenis_kelamin', agama = '$agama', no_telp = '$no_telp', email = '$email', alamat = '$alamat', jabatan = '$jabatan', foto = '$nama_gambar', username = '$username', password = md5('$password'), pass = '$password', status = '$status' WHERE id_penguji = '$id'") or die($db->error);
+                        echo '<script>window.location="?page=penguji";</script>';
+                    } else {
+                        echo '<script>alert("Gagal mengedit data penguji, foto gagal diupload, coba lagi!"); window.location="?page=penguji";</script>';
+                    }
+                }
+            } else if (@$_GET['action'] == 'hapus') {
+                mysqli_query($db, "DELETE FROM penguji WHERE id_penguji = '$id'") or die($db->error);
                 echo '<script>window.location="?page=penguji";</script>';
-            } else {
-                echo '<script>alert("Gagal mengedit data penguji, foto gagal diupload, coba lagi!"); window.location="?page=penguji";</script>';
             }
-        }
-    } else if(@$_GET['action'] == 'hapus') {
-        mysqli_query($db, "DELETE FROM penguji WHERE id_penguji = '$id'") or die ($db->error);
-        echo '<script>window.location="?page=penguji";</script>';
-    }
-    ?>
+        ?>
 </div>
 
 <?php
