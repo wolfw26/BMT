@@ -12,7 +12,7 @@ $result = mysqli_query($con, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Peenilaian</title>
+    <title>Laporan Pelatihan</title>
     <style type="text/css">
         .item_entry {
             border-collapse: collapse;
@@ -124,22 +124,40 @@ $result = mysqli_query($con, $sql);
                 <hr> <br>
 
                 <p style="font-size: 14px;" align="center">
-                    <b>LAPORAN PENGUJI</b>
+                    <b>LAPORAN PELATIHAN</b>
                 </p> <br>
 
                 <table class="item_entry" width="100%" class="table display nowrap">
                     <thead>
                         <tr align="left">
-                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">No</th>
-                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">NIP</th>
                             <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">NAMA</th>
-                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">TTL</th>
-                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">NOMOR TELP</th>
-                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">ALAMAT</th>
+                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">NILAI / GRADE</th>
+                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">STATUS</th>
+                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">TOTAL NILAI</th>
+                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">TANGGAL PELATIHAN</th>
+                            <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">TANGGAL SELESAI</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php
+                        $no = 1;
+                        $sql_pelatihan = $con->query("SELECT p.*, ps.nama_lengkap, n.* 
+                        FROM pelatihan p
+                        JOIN peserta ps ON p.id_peserta = ps.id_peserta
+                        JOIN penilaian n ON p.id_nilai = n.id_nilai");
+                        while ($data_pelatihan = $sql_pelatihan->fetch_assoc()) {
+                        ?>
+                            <!-- END tag PHP -->
+                            <!-- kolom table -->
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $data_pelatihan['nama_lengkap']; ?></td>
+                                <td><?= $data_pelatihan['n_total']; ?> / <?= $data_pelatihan['grade']; ?></td>
+                                <td><?= $data_pelatihan['status_nilai']; ?></td>
+                                <td><?= date("d F Y", strtotime($data_pelatihan['tgl_mulai'])); ?></td>
+                                <td><?= date("d F Y", strtotime($data_pelatihan['tgl_selesai'])); ?></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table> <br>
 
@@ -160,7 +178,6 @@ $result = mysqli_query($con, $sql);
                 </table>
             </div>
         </div>
-
     </div>
 
 </body>
