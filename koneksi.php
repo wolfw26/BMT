@@ -1,31 +1,27 @@
 <?php
-$db = mysqli_connect("localhost", "root", "root_password", "bmt");
-	
-// Check connection
-if ($mysqli -> connect_errno) {
-	echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-	exit();
-  }
-
+$db = mysqli_connect("localhost", "root", "", "bmt");
 
 //---fungsi2---//
-function cek_session($isi_admin, $isi_penguji) {
-    if(@$_SESSION['admin']) {
-        echo $isi_admin;
-    } else if(@$_SESSION['penguji']) {
-        echo $isi_penguji;
-    }
+function cek_session($isi_admin, $isi_penguji)
+{
+	if (@$_SESSION['admin']) {
+		echo $isi_admin;
+	} else if (@$_SESSION['penguji']) {
+		echo $isi_penguji;
+	}
 }
 
-function tgl_indo($tgl) {
-	$tanggal = substr($tgl,8,2);
-	$bulan = getBulan(substr($tgl,5,2));
-	$tahun = substr($tgl,0,4);
-	return $tanggal.' '.$bulan.' '.$tahun;		 
+function tgl_indo($tgl)
+{
+	$tanggal = substr($tgl, 8, 2);
+	$bulan = getBulan(substr($tgl, 5, 2));
+	$tahun = substr($tgl, 0, 4);
+	return $tanggal . ' ' . $bulan . ' ' . $tahun;
 }
-function getBulan($bln){
-	switch ($bln){
-		case 1: 
+function getBulan($bln)
+{
+	switch ($bln) {
+		case 1:
 			return "Januari";
 			break;
 		case 2:
@@ -64,14 +60,14 @@ function getBulan($bln){
 	}
 }
 
-function tampil_per_ID($table, $where = null) {
+function tampil_per_ID($table, $where = null)
+{
 	global $db;
 	$command = "SELECT * FROM $table";
-	if($where != null) {
+	if ($where != null) {
 		$command .= " WHERE $where";
 	}
-	$query = mysqli_query($db, $command) or die ($db->error);
+	$query = mysqli_query($db, $command) or die($db->error);
 	return $query;
 	mysqli_close($db);
 }
-?>
