@@ -328,6 +328,9 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                         <li>
                                             <a href="laporan/ujian2.php" target="_blank">Tes Tertulis</a>
                                         </li>
+                                        <li>
+                                            <a href="laporan/lpelatihan.php" target="_blank">Pelatihan</a>
+                                        </li>
 
                                     </ul>
                                 </li>
