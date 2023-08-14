@@ -331,7 +331,11 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                         <li>
                                             <a href="laporan/lpelatihan.php" target="_blank">Pelatihan</a>
                                         </li>
-
+                                        <li>
+                                            <a class="<?php if (@$_GET['page'] == 'monitoring') {
+                                                            echo 'active-menu';
+                                                        } ?>" href="?page=monitoring ">Monitoring Karyawan</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <!-- END SIDEBAR MENU -->
@@ -374,6 +378,8 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                 include "inc/penilaian.php";
                             } else if (@$_GET['page'] == 'pelatihan') {
                                 include "inc/pelatihan.php";
+                            } else if (@$_GET['page'] == 'monitoring') {
+                                require_once "laporan/monitoring.php";
                             } else {
                                 echo "<div class='col-xs-12'><div class='alert alert-danger'>[404] Halaman tidak ditemukan! Silahkan pilih menu yang ada!</div></div>";
                             } ?>

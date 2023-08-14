@@ -149,9 +149,9 @@ $db = mysqli_connect("localhost", "root", "", "bmt");
                         if (mysqli_num_rows($sql_cek_user) > 0) {
                             echo "<script>alert('Username yang Anda pilih sudah ada, silahkan ganti yang lain');</script>";
                         } else {
-                            if ($nama_foto != '') {
-                                if (move_uploaded_file($sumber, $target . $nama_foto)) {
-                                    mysqli_query($db, "INSERT INTO peserta VALUES('', '$nik', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$ruang', '$nama_gambar', '$user', md5('$pass'), '$pass', 'tidak aktif')") or die($db->error);
+                            if ($foto != '') {
+                                if (move_uploaded_file($sumber, $target . $foto)) {
+                                    mysqli_query($db, "INSERT INTO peserta VALUES('', '$nik', '$nama_lengkap', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$no_telp', '$email', '$alamat', '$ruang', '$foto', '$user', md5('$pass'), '$pass', 'tidak aktif')") or die($db->error);
                                     echo '<script>alert("Pendaftaran berhasil, silahkan login"); window.location="./"</script>';
                                 } else {
                                     echo '<script>alert("Gagal mendaftar, foto gagal diupload, coba lagi!");</script>';
