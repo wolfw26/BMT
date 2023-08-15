@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 14 Agu 2023 pada 13.57
+-- Waktu pembuatan: 15 Agu 2023 pada 06.34
 -- Versi server: 5.7.33
 -- Versi PHP: 8.1.12
 
@@ -387,8 +387,8 @@ CREATE TABLE `soal_essay` (
 
 INSERT INTO `soal_essay` (`id_essay`, `id_tq`, `pertanyaan`, `gambar`, `tgl_buat`) VALUES
 (23, 38, '123', '', '2022-08-02'),
-(25, 43, 'Berapa Gaji Yang kamu inginkan?', '', '2022-08-16'),
-(26, 43, 'Apa yang akan kamu berikan kepada perusahaan jika kamu di trima?', '', '2022-08-16');
+(25, 50, 'Berapa Gaji Yang kamu inginkan?', '', '2022-08-16'),
+(26, 50, 'Apa yang akan kamu berikan kepada perusahaan jika kamu di trima?', '', '2022-08-16');
 
 -- --------------------------------------------------------
 
@@ -433,12 +433,15 @@ CREATE TABLE `topik_ujian` (
 --
 
 INSERT INTO `topik_ujian` (`id_tq`, `judul`, `id_ruang`, `id_bahan_ujian`, `tgl_buat`, `pembuat`, `waktu_soal`, `info`, `status`) VALUES
-(42, '$judul', 0, 0, '0000-00-00', '$pembuat', 0, '$info', ''),
 (43, 'Tes Wawancara', 6, 4, '2022-08-16', '8', 3600, 'rtarg', 'aktif'),
 (46, 'Tes Tertulis', 8, 0, '2023-01-08', 'admin', 3600, '', 'aktif'),
 (48, '1', 9, 2, '2023-02-21', 'admin', 3600, 'sudah/belum', 'aktif'),
 (49, 'HOD', 6, 0, '2023-03-08', 'admin', 3600, 'RWWW', 'aktif'),
-(50, 'HOD', 9, 2, '2023-08-11', '8', 4200, 'dsdd', 'aktif');
+(50, 'HOD', 9, 2, '2023-08-11', '8', 4200, 'dsdd', 'aktif'),
+(51, 'OOP', 9, 2, '2023-08-15', '17', 120, 'Tentang OOP,Tertulis', 'aktif'),
+(52, 'OOP', 9, 4, '2023-08-15', '17', 60, 'OOP,wawancara', 'aktif'),
+(53, 'PHP MVC', 9, 2, '2023-08-15', '17', 120, 'Pembuatan website menggunakan struktur MVC pada php', 'aktif'),
+(54, 'Laravel Dasar', 9, 2, '2023-08-16', '17', 60, 'pembuatan website dengan laravel,soal terkait dengan langkah awal dari instalasi sampai pembuatan model serta CRUD sederhana', 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -593,7 +596,7 @@ ALTER TABLE `nilai_pilgan`
 -- AUTO_INCREMENT untuk tabel `pelatihan`
 --
 ALTER TABLE `pelatihan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `penguji`
@@ -611,7 +614,7 @@ ALTER TABLE `penilaian`
 -- AUTO_INCREMENT untuk tabel `peserta`
 --
 ALTER TABLE `peserta`
-  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT untuk tabel `ruang`
@@ -641,7 +644,7 @@ ALTER TABLE `soal_pilgan`
 -- AUTO_INCREMENT untuk tabel `topik_ujian`
 --
 ALTER TABLE `topik_ujian`
-  MODIFY `id_tq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_tq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

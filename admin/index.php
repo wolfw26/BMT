@@ -326,15 +326,17 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="laporan/ujian2.php" target="_blank">Tes Tertulis</a>
-                                        </li>
-                                        <li>
                                             <a href="laporan/lpelatihan.php" target="_blank">Pelatihan</a>
                                         </li>
                                         <li>
                                             <a class="<?php if (@$_GET['page'] == 'monitoring') {
                                                             echo 'active-menu';
                                                         } ?>" href="?page=monitoring ">Monitoring Karyawan</a>
+                                        </li>
+                                        <li>
+                                            <a class="<?php if (@$_GET['page'] == 'ldataujian') {
+                                                            echo 'active-menu';
+                                                        } ?>" href="?page=ldataujian ">Laporan Data Ujian</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -380,6 +382,8 @@ if (@$_SESSION['admin'] || @$_SESSION['penguji']) {
                                 include "inc/pelatihan.php";
                             } else if (@$_GET['page'] == 'monitoring') {
                                 require_once "laporan/monitoring.php";
+                            } else if (@$_GET['page'] == 'ldataujian') {
+                                require_once "laporan/dataujian.php";
                             } else {
                                 echo "<div class='col-xs-12'><div class='alert alert-danger'>[404] Halaman tidak ditemukan! Silahkan pilih menu yang ada!</div></div>";
                             } ?>

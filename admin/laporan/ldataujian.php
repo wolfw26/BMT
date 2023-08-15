@@ -1,5 +1,5 @@
 <?php
-$dataPeserta = isset($_GET['data']) ? json_decode(urldecode($_GET['data']), true) : [];
+$dataUjian = isset($_GET['data']) ? json_decode(urldecode($_GET['data']), true) : [];
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $dataPeserta = isset($_GET['data']) ? json_decode(urldecode($_GET['data']), true
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Pelatihan</title>
+    <title>Laporan Data Ujian</title>
     <style type="text/css">
         .item_entry {
             border-collapse: collapse;
@@ -117,33 +117,33 @@ $dataPeserta = isset($_GET['data']) ? json_decode(urldecode($_GET['data']), true
                 <hr> <br>
 
                 <p style="font-size: 14px;" align="center">
-                    <b>LAPORAN MONITORING</b>
+                    <b>LAPORAN DATA UJIAN</b>
                 </p> <br>
                 <?php
-                if (count($dataPeserta) > 0) {
+                if (count($dataUjian) > 0) {
                 ?>
                     <table class="item_entry" width="100%" class="table display nowrap">
                         <thead>
                             <tr align="left">
-                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">NAMA</th>
-                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">ALAMAT</th>
-                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">STATUS</th>
+                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">JUDUL</th>
                                 <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">JABATAN</th>
-                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">GRADE</th>
-                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">STATUS</th>
+                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">JENIS</th>
+                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">PEMBUAT</th>
+                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">WAKTU</th>
+                                <th style="font-size: 12px; vertical-align: middle; color: black;" align="center">DESKRIPSI</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($dataPeserta as $peserta) {
+                            foreach ($dataUjian as $ujian) {
                             ?>
                                 <tr>
-                                    <td><?= $peserta['nama_lengkap']; ?></td>
-                                    <td><?= $peserta['alamat']; ?></td>
-                                    <td><?= $peserta['status']; ?></td>
-                                    <td><?= $peserta['kandidat']; ?></td>
-                                    <td><?= $peserta['grade']; ?></td>
-                                    <td><?= $peserta['status_nilai']; ?></td>
+                                    <td><?= $ujian['judul']; ?></td>
+                                    <td><?= $ujian['kandidat']; ?></td>
+                                    <td><?= $ujian['bahan_ujian']; ?></td>
+                                    <td><?= $ujian['nama_lengkap']; ?></td>
+                                    <td><?= $ujian['waktu_soal']; ?> Menit</td>
+                                    <td><?= $ujian['info']; ?></td>
                                 </tr>
                             <?php } ?>
                             <!-- END tag PHP -->
